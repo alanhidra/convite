@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo Automático em Tela Cheia</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Remove barras de rolagem */
+            background: black;
+        }
+
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Faz o vídeo ocupar toda a tela */
+        }
+    </style>
+</head>
+<body>
+    <video id="meuVideo" autoplay muted playsinline>
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let video = document.getElementById("meuVideo");
+
+            video.play().catch(error => console.log("Autoplay bloqueado:", error));
+
+            // Forçar tela cheia após um pequeno atraso
+            setTimeout(() => {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) { 
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { 
+                    video.msRequestFullscreen();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
