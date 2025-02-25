@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo Automático em Tela Cheia</title>
+    <title>Vídeo em Tela Cheia</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Remove barras de rolagem */
             background: black;
+            overflow: hidden;
         }
 
         video {
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* Faz o vídeo ocupar toda a tela */
+            object-fit: cover;
         }
     </style>
 </head>
@@ -29,9 +29,10 @@
         document.addEventListener("DOMContentLoaded", function() {
             let video = document.getElementById("meuVideo");
 
+            // Tenta iniciar a reprodução automática
             video.play().catch(error => console.log("Autoplay bloqueado:", error));
 
-            // Forçar tela cheia após um pequeno atraso
+            // Simula um clique para ativar o fullscreen automaticamente
             setTimeout(() => {
                 if (video.requestFullscreen) {
                     video.requestFullscreen();
@@ -40,7 +41,7 @@
                 } else if (video.msRequestFullscreen) { 
                     video.msRequestFullscreen();
                 }
-            }, 500);
+            }, 300); // Pequeno atraso para garantir que a página carregou
         });
     </script>
 </body>
