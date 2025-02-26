@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <video id="meuVideo" autoplay muted playsinline>
+    <video id="meuVideo" autoplay playsinline>
         <source src="video.mp4" type="video/mp4">
         Seu navegador não suporta vídeos.
     </video>
@@ -42,6 +42,12 @@
                     video.msRequestFullscreen();
                 }
             }, 300); // Pequeno atraso para garantir que a página carregou
+
+            // Ativa o som após uma interação do usuário
+            document.addEventListener("click", function() {
+                video.muted = false;
+                video.play().catch(error => console.log("Erro ao reproduzir:", error));
+            }, { once: true }); // Garante que só será executado uma vez
         });
     </script>
 </body>
